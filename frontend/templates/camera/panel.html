@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ device.name }} - 摄像头检测</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/camera.css') }}">
+</head>
+<body>
+<div class="camera-container">
+    <!-- 头部：设备信息和返回按钮 -->
+    <div class="camera-header">
+        <h1>{{ device.name }} - 摄像头检测</h1>
+        <a href="/" class="btn-back">返回监控面板</a>
+    </div>
+
+    <!-- 主内容区：左右两栏布局 -->
+    <div class="camera-main">
+        <!-- 左侧：摄像头画面区 -->
+        <div class="camera-preview">
+            <div class="preview-header">
+                <h2>实时画面</h2>
+                <span class="camera-status" id="cameraStatus">检测中...</span>
+            </div>
+
+            <!-- 画面显示区域 - 你需要的摄像头画面窗口 -->
+            <div class="video-container" id="videoContainer">
+                <img id="liveFeed" src="" alt="摄像头画面" style="display: none;">
+                <div class="placeholder-image" id="placeholderImg">
+                    <div class="placeholder-icon">📷</div>
+                    <p>摄像头未启动或不可用</p>
+                </div>
+            </div>
+
+            <!-- 控制按钮组 -->
+            <div class="control-buttons">
+                <button id="testCameraBtn" class="btn-primary">测试摄像头</button>
+                <button id="startCameraBtn" class="btn-success">开启实时预览</button>
+                <button id="captureBtn" class="btn-info" disabled>拍照</button>
+                <button id="stopCameraBtn" class="btn-warning">停止预览</button>
+            </div>
+
+            <!-- 测试结果展示区 -->
+            <div class="test-result" id="testResult">
+                <!-- 动态显示测试结果 -->
+            </div>
+        </div>
+
+        <!-- 右侧：已保存图片列表（图片文件夹查看功能） -->
+        <div class="image-gallery">
+            <h2>已保存图片</h2>
+            <div class="gallery-control">
+                <span>共 <span id="imageCount">0</span> 张</span>
+                <button id="refreshGalleryBtn" class="btn-small">刷新</button>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 图片列表动态加载 -->
+                <div class="gallery-empty">暂无保存的图片</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+</body>
+</html>

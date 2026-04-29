@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消毒系统控制面板</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <style>
+        .dashboard-container {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .dashboard-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .dashboard-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .dashboard-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 4px;
+        }
+
+        .dashboard-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-purple), var(--primary-blue));
+        }
+
+        .machines-grid {
+            min-height: 400px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            border: none;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: linear-gradient(135deg, #c82333, #bd2130);
+            transform: scale(1.05);
+        }
+
+        /* 新增摄像头按钮样式 */
+        .btn-camera {
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-camera:hover {
+            background: linear-gradient(135deg, #e83e8c, #6f42c1);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        /* 计时器样式 */
+        .runtime-timer {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .runtime-timer.stopped {
+            background: linear-gradient(135deg, #6c757d, #adb5bd);
+        }
+        
+        .runtime-timer i {
+            font-size: 0.7rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .runtime-timer.stopped i {
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .lifetime-badge {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        
+        .lifetime-badge.good { background: #28a745; color: white; }
+        .lifetime-badge.normal { background: #17a2b8; color: white; }
+        .lifetime-badge.warning { background: #ffc107; color: #000; }
+        .lifetime-badge.danger { background: #dc3545; color: white; }
+
+        /* 按钮图标间距 */
+        .btn i {
+            margin-right: 4px;
+        }
+
+        /* 在小屏幕上隐藏文字只显示图标 */
+        @media (max-width: 768px) {
+            .btn span {
+                display: none;
+            }
+
+            .btn i {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">消毒系统控制面板</a>
+
+        <!-- 用户信息区域 -->
+        <div class="navbar-user-info d-flex align-items-center">
+            <div class="user-avatar me-3">
+                <!-- 如果用户有自定义头像就显示，否则显示默认头像 -->
+                {% if current_user.avatar %}
+                <img src="/static/images/{{ current_user.avatar }}" alt="用户头像" class="rounded-circle" width="45"
+                     height="45">
+                {% else %}
+                <img src="/static/images/user-avatar.jpg" alt="用户头像" class="rounded-circle" width="45" height="45"
+                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM0QTAwRTAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM4RTJERTIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIyMi41IiBjeT0iMjIuNSIgcj0iMjAuNSIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjIyLjUiIGN5PSIxOCIgcj0iNi43NSIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNIDE0IDMxLjVRIDIyLjUgNDAuNSAzMSAzMS41IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48L3N2Zz4='">
+                {% endif %}
+            </div>
+            <div class="user-details text-end">
+                <div class="username fw-bold">{{ current_user.name }}</div>
+                <div class="welcome-text small text-light">欢迎，{{ current_user.name }}</div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">消毒机监控 (共 {{ machines|length }} 台)</h2>
+        <div>
+            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addMachineModal">
+                <i class="fas fa-plus"></i> 添加消毒机
+            </button>
+            <button class="btn btn-info" onclick="refreshAllMachines()">
+                <i class="fas fa-sync-alt"></i> 刷新全部状态
+            </button>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="row machines-grid">
+            {% for machine in machines %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">{{ machine.name }}</h5>
+                        <span class="badge {% if machine.status == '正常' %}bg-success{% elif machine.status == '警告' %}bg-warning{% else %}bg-danger{% endif %}">
+                                {{ machine.status }}
+                            </span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ID:</strong> {{ machine.id }}</p>
+                        <p><strong>地理位置:</strong> {{ machine.location }}</p>
+                        <p><strong>运行状态:</strong>
+                            <span class="badge {% if machine.enabled %}bg-success{% else %}bg-secondary{% endif %}">
+                                    {{ '已启用' if machine.enabled else '未启用' }}
+                                </span>
+                        </p>
+                        <p><strong>已消毒器械数量:</strong> {{ machine.disinfected_count }}</p>
+                        <p>
+                            <strong>累计运行时长:</strong>
+                            <span id="runtime-{{ machine.id }}" class="runtime-timer stopped">
+                                <i class="fas fa-circle"></i>
+                                <span class="runtime-text">加载中...</span>
+                            </span>
+                            <span id="lifetime-{{ machine.id }}" class="lifetime-badge">--</span>
+                        </p>
+                        <p class="mt-2">
+                            <button class="btn btn-sm btn-outline-success" onclick="toggleRuntime({{ machine.id }}, '{{ machine.name }}', this)">
+                                <i class="fas fa-play"></i> 开始计时
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="showRuntimeDetails({{ machine.id }})">
+                                <i class="fas fa-chart-line"></i> 详情
+                            </button>
+                        </p>
+                    </div>
+
+                    <!-- ========== 修改的部分：卡片底部 ========== -->
+                    <div class="card-footer">
+                        <!-- 左侧：刷新和删除按钮组 -->
+                        <div class="btn-group">
+                            <button class="btn btn-outline-primary btn-sm" onclick="refreshMachine({{ machine.id }})"
+                                    title="刷新状态">
+                                <i class="fas fa-sync-alt"></i>
+                                <span class="d-none d-md-inline">刷新</span>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm delete-btn"
+                                    onclick="confirmDelete({{ machine.id }}, '{{ machine.name }}')"
+                                    title="删除设备">
+                                <i class="fas fa-trash"></i>
+                                <span class="d-none d-md-inline">删除</span>
+                            </button>
+                        </div>
+
+                        <!-- 右侧：操作面板按钮 -->
+                        <div class="btn-group">
+                            <!-- 控制面板按钮 -->
+                            <a href="{{ url_for('machine_detail', machine_id=machine.id) }}"
+                               class="btn btn-primary btn-sm" title="控制面板">
+                                <i class="fas fa-sliders-h"></i>
+                                <span class="d-none d-md-inline">控制</span>
+                            </a>
+
+                            <!-- 摄像头检测按钮 -->
+                            <a href="{{ url_for('camera_panel', device_id=machine.id) }}"
+                               class="btn btn-camera btn-sm" title="摄像头检测">
+                                <i class="fas fa-camera"></i>
+                                <span class="d-none d-md-inline">摄像头</span>
+                            </a>
+                            
+                            <!-- AI报告按钮 -->
+                            <a href="{{ url_for('llm_report') }}"
+                               class="btn btn-info btn-sm" title="AI智能报告" style="background: linear-gradient(135deg, #17a2b8, #138496); border: none; color: white;">
+                                <i class="fas fa-robot"></i>
+                                <span class="d-none d-md-inline">AI报告</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- ========== 修改结束 ========== -->
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- 添加消毒机模态框 -->
+<div class="modal fade" id="addMachineModal" tabindex="-1" aria-labelledby="addMachineModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addMachineModalLabel">添加新消毒机</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addMachineForm">
+                    <div class="mb-3">
+                        <label for="machineName" class="form-label">消毒机名称</label>
+                        <input type="text" class="form-control" id="machineName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="machineLocation" class="form-label">地理位置</label>
+                        <input type="text" class="form-control" id="machineLocation" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="machineStatus" class="form-label">初始状态</label>
+                        <select class="form-select" id="machineStatus" required>
+                            <option value="正常">正常</option>
+                            <option value="警告">警告</option>
+                            <option value="故障">故障</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="machineEnabled" checked>
+                        <label class="form-check-label" for="machineEnabled">启用消毒机</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="addNewMachine()">添加消毒机</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除确认模态框 -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmModalLabel">确认删除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>您确定要删除消毒机 <strong id="deleteMachineName"></strong> 吗？</p>
+                <p class="text-danger">此操作不可撤销！</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">确认删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 引入Bootstrap JS和Font Awesome图标 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+<script>
+    let currentDeleteId = null;
+
+    // 刷新单个消毒机状态
+    function refreshMachine(machineId) {
+        alert('正在刷新消毒机 ' + machineId + ' 的状态...');
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    }
+
+    // 刷新所有消毒机状态
+    function refreshAllMachines() {
+        alert('正在刷新所有消毒机状态...');
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    }
+
+    // 添加新消毒机
+    async function addNewMachine() {
+        const name = document.getElementById('machineName').value;
+        const locationValue = document.getElementById('machineLocation').value;
+        const status = document.getElementById('machineStatus').value;
+        const enabled = document.getElementById('machineEnabled').checked;
+
+        if (!name || !locationValue) {
+            alert('请填写所有必填字段');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/add_machine', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    location: locationValue,
+                    status: status,
+                    enabled: enabled
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addMachineModal'));
+                modal.hide();
+                document.getElementById('addMachineForm').reset();
+                window.location.reload();
+            } else {
+                alert('添加失败: ' + result.error);
+            }
+        } catch (error) {
+            alert('添加失败: ' + error);
+        }
+    }
+
+    // 确认删除消毒机
+    function confirmDelete(machineId, machineName) {
+        currentDeleteId = machineId;
+        document.getElementById('deleteMachineName').textContent = machineName;
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+        deleteModal.show();
+    }
+
+    // 执行删除操作
+    async function deleteMachine() {
+        if (!currentDeleteId) return;
+
+        try {
+            const response = await fetch('/api/delete_machine/' + currentDeleteId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            // 检查响应状态
+            if (!response.ok) {
+                throw new Error('HTTP error! status: ' + response.status);
+            }
+
+            // 检查响应内容类型
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error('Expected JSON but got: ' + text.substring(0, 100));
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+                // 关闭删除确认模态框
+                const deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal'));
+                deleteModal.hide();
+
+                // 显示成功消息并刷新页面
+                alert('消毒机删除成功！');
+                window.location.reload();
+            } else {
+                alert('删除失败: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Delete error:', error);
+            alert('删除失败: ' + error.message);
+        }
+    }
+
+    // 绑定删除确认按钮事件
+    document.addEventListener('DOMContentLoaded', function () {
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        if (confirmDeleteBtn) {
+            confirmDeleteBtn.addEventListener('click', deleteMachine);
+        }
+        
+        // 加载所有机器的运行时间状态
+        loadAllRuntimeStatus();
+        // 定期刷新
+        setInterval(loadAllRuntimeStatus, 30000);
+    });
+    
+    // ============ 运行计时器功能 ============
+    
+    // 加载所有机器的运行状态
+    async function loadAllRuntimeStatus() {
+        try {
+            const response = await fetch('/api/runtime/all_status');
+            const result = await response.json();
+            
+            if (result.success) {
+                result.machines.forEach(machine => {
+                    updateRuntimeDisplay(machine.machine_id, machine);
+                });
+            }
+        } catch (error) {
+            console.error('加载运行状态失败:', error);
+        }
+    }
+    
+    // 更新运行时间显示
+    function updateRuntimeDisplay(machineId, data) {
+        const timerEl = document.getElementById('runtime-' + machineId);
+        const lifetimeEl = document.getElementById('lifetime-' + machineId);
+
+        if (timerEl) {
+            const hours = Math.floor(data.total_hours);
+            const minutes = Math.floor((data.total_hours - hours) * 60);
+            
+            if (data.is_running) {
+                timerEl.classList.remove('stopped');
+                timerEl.querySelector('.runtime-text').textContent = 
+                    '运行中 ' + hours + 'h ' + minutes + 'm';
+            } else {
+                timerEl.classList.add('stopped');
+                timerEl.querySelector('.runtime-text').textContent = 
+                    '已停止 ' + hours + 'h ' + minutes + 'm';
+            }
+        }
+        
+        if (lifetimeEl && data.lifetime_status) {
+            const status = data.lifetime_status;
+            lifetimeEl.className = 'lifetime-badge ' + status.level;
+            lifetimeEl.textContent = status.status;
+            lifetimeEl.title = status.message;
+        }
+    }
+    
+    // 切换运行计时器
+    async function toggleRuntime(machineId, machineName, btn) {
+        const isStarting = btn.innerHTML.includes('开始');
+        
+        try {
+            const endpoint = isStarting ? '/api/runtime/start' : '/api/runtime/stop';
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    machine_id: machineId,
+                    machine_name: machineName
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                // 更新按钮状态
+                if (isStarting) {
+                    btn.innerHTML = '<i class="fas fa-stop"></i> 停止计时';
+                    btn.classList.remove('btn-outline-success');
+                    btn.classList.add('btn-outline-danger');
+                } else {
+                    btn.innerHTML = '<i class="fas fa-play"></i> 开始计时';
+                    btn.classList.remove('btn-outline-danger');
+                    btn.classList.add('btn-outline-success');
+                }
+                
+                // 刷新显示
+                loadAllRuntimeStatus();
+            } else {
+                alert('操作失败: ' + result.error);
+            }
+        } catch (error) {
+            alert('请求失败: ' + error.message);
+        }
+    }
+    
+    // 显示运行详情
+    async function showRuntimeDetails(machineId) {
+        try {
+            const response = await fetch('/api/runtime/status/' + machineId);
+            const result = await response.json();
+            
+            if (result.success) {
+                const status = result.lifetime_status;
+                alert('设备运行详情：\n\n总运行时长: ' + result.total_hours.toFixed(2) + ' 小时\n当前状态: ' + (result.is_running ? '运行中' : '已停止') + '\n寿命评估: ' + status.status + '\n已使用: ' + status.percentage + '%\n剩余预计: ' + status.remaining_hours.toFixed(0) + ' 小时\n\n' + status.message);
+            }
+        } catch (error) {
+            alert('获取详情失败: ' + error.message);
+        }
+    }
+</script>
+</body>
+</html>
+

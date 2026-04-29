@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "training_samples": 2501,
+  "training_date": "2025-11-24T19:32:28.859846",
+  "machine_info": {
+    "id": "1",
+    "name": "消毒机A"
+  },
+  "final_accuracy": {
+    "tool_accuracy": 0.8084999918937683,
+    "position_accuracy": 1.0,
+    "val_tool_accuracy": 0.71257483959198,
+    "val_position_accuracy": 1.0
+  }
+}

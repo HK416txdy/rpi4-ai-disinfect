@@ -1,0 +1,12 @@
+opencv-python
+# tensorflow  # 注释掉，因为可能存在Python 3.14兼容性问题
+numpy
+Pillow
+matplotlib
+flask
+pandas
+scikit-learn
+xgboost
+joblib
+requests
+tensorflow-cpu==2.15.0  # 替换为CPU版本，如果仍存在问题，可考虑完全移除

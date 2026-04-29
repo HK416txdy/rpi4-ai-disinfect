@@ -22,7 +22,7 @@ class AppContext:
     def detector(self):
         """获取污渍检测器实例"""
         if self._detector is None:
-            from machine_core.detector import StainDetector
+            from hardware.machine_core.detector import StainDetector
             self._detector = StainDetector()
         return self._detector
     

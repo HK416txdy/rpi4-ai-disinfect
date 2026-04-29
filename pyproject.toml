@@ -9,4 +9,11 @@ dependencies = [
     "numpy==2.4.4",
     "opencv-python==4.13.0.92",
     "werkzeug==3.1.8",
+    "pillow==10.4.0",
+    "matplotlib==3.8.4",
+    "pandas==2.2.2",
+    "scikit-learn==1.4.2",
+    "xgboost==2.0.3",
+    "joblib==1.4.0",
+    "requests==2.31.0",
 ]

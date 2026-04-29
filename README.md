@@ -79,6 +79,9 @@ AImachine/
 │   └── README.md                # 后端文档
 ├── hardware/                     # 硬件控制模块
 │   ├── machine_core/            # 硬件核心模块
+│   │   ├── detector.py          # 污渍检测器
+│   │   ├── raspberry_pi_camera.py # 树莓派摄像头接口
+│   │   └── new.py               # 高级污渍检测算法
 │   ├── requirements.txt         # 硬件依赖
 │   └── README.md                # 硬件文档
 ├── docs/                        # 项目文档

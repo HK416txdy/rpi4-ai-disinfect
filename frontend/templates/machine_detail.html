@@ -25,7 +25,12 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-2 mb-2">
+                                <button class="btn btn-outline-primary w-100 function-btn" data-function="device_control">
+                                    <i class="fas fa-cogs"></i> 设备控制
+                                </button>
+                            </div>
+                            <div class="col-md-2 mb-2">
                                 <button class="btn btn-primary w-100 function-btn active" data-function="equipment">
                                     <i class="fas fa-cogs"></i> 器械识别
                                 </button>
@@ -40,7 +45,7 @@
                                     <i class="fas fa-tshirt"></i> 织物污渍识别
                                 </button>
                             </div>
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-2 mb-2">
                                 <button class="btn btn-outline-primary w-100 function-btn" data-function="disinfection">
                                     <i class="fas fa-spray-can"></i> 模拟消毒预测
                                 </button>
@@ -457,6 +462,103 @@
             </div>
         </div>
 
+        <!-- 设备控制面板 -->
+        <div class="function-panel" id="device_control-panel" style="display: none;">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <h5>设备控制</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- 设备状态显示 -->
+                            <div class="mb-4">
+                                <h6><i class="fas fa-info-circle"></i> 设备状态</h6>
+                                <div id="deviceStatus" class="alert alert-info">
+                                    <div class="text-center">
+                                        <div class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">加载中...</span>
+                                        </div>
+                                        <div>正在获取设备状态...</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 控制按钮区域 -->
+                            <div class="mb-4">
+                                <h6><i class="fas fa-sliders-h"></i> 设备控制</h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-success w-100" id="powerOnBtn">
+                                            <i class="fas fa-power-off"></i> 开机
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-danger w-100" id="powerOffBtn">
+                                            <i class="fas fa-power-off"></i> 关机
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-warning w-100" id="restartBtn">
+                                            <i class="fas fa-redo"></i> 重启
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <button class="btn btn-info w-100" id="calibrateBtn">
+                                            <i class="fas fa-crosshairs"></i> 校准
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 控制历史记录 -->
+                            <div class="mb-4">
+                                <h6><i class="fas fa-history"></i> 控制历史</h6>
+                                <div id="controlHistory" class="border rounded p-3" style="max-height: 200px; overflow-y: auto;">
+                                    <div class="text-muted text-center">暂无控制记录</div>
+                                </div>
+                            </div>
+
+                            <!-- 控制状态显示 -->
+                            <div id="controlStatus"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <h5>设备信息</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>运行统计</h6>
+                            <div id="runtimeStats" class="mb-4">
+                                <div class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">加载中...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h6>维护提醒</h6>
+                            <div id="maintenanceAlerts" class="alert alert-warning">
+                                <small>设备运行正常，无维护提醒</small>
+                            </div>
+
+                            <div class="mt-3 alert alert-info">
+                                <small>
+                                    <strong>注意:</strong><br>
+                                    • 设备控制命令将立即发送到硬件<br>
+                                    • 关机前请确保设备处于安全状态<br>
+                                    • 校准操作可能需要几分钟时间
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 详细结果模态框 -->
         <div class="modal fade" id="detailedResultsModal" tabindex="-1" aria-labelledby="detailedResultsModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -523,6 +625,8 @@
         bindRaspberryPiCameraEvents();
     }
 
+    // 初始化设备控制功能
+    initDeviceControl();
         // =============================================================================
         // 功能面板管理
         // =============================================================================
@@ -1917,6 +2021,348 @@ function bindOtherFunctionEvents() {
     } else {
         console.warn('开始模拟预测按钮未找到');
     }
+}
+
+// =============================================================================
+// 设备控制功能
+// =============================================================================
+
+// 绑定设备控制按钮事件
+function bindDeviceControlEvents() {
+    console.log('绑定设备控制按钮事件...');
+
+    // 开机按钮
+    const powerOnBtn = document.getElementById('powerOnBtn');
+    if (powerOnBtn) {
+        powerOnBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            sendDeviceCommand('power_on');
+        });
+    }
+
+    // 关机按钮
+    const powerOffBtn = document.getElementById('powerOffBtn');
+    if (powerOffBtn) {
+        powerOffBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('确定要关闭设备吗？请确保设备处于安全状态。')) {
+                sendDeviceCommand('power_off');
+            }
+        });
+    }
+
+    // 重启按钮
+    const restartBtn = document.getElementById('restartBtn');
+    if (restartBtn) {
+        restartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('确定要重启设备吗？')) {
+                sendDeviceCommand('restart');
+            }
+        });
+    }
+
+    // 校准按钮
+    const calibrateBtn = document.getElementById('calibrateBtn');
+    if (calibrateBtn) {
+        calibrateBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            sendDeviceCommand('calibrate');
+        });
+    }
+}
+
+// 发送设备控制命令
+async function sendDeviceCommand(command, parameters = {}) {
+    console.log(`发送设备控制命令: ${command}`);
+
+    const controlStatusDiv = document.getElementById('controlStatus');
+    const machineId = '{{ machine.id }}';
+
+    try {
+        controlStatusDiv.innerHTML = `
+            <div class="alert alert-info">
+                <div class="d-flex align-items-center">
+                    <div class="spinner-border spinner-border-sm me-2" role="status">
+                        <span class="visually-hidden">加载中...</span>
+                    </div>
+                    <div>正在发送命令: ${getCommandDisplayName(command)}...</div>
+                </div>
+            </div>
+        `;
+
+        const response = await fetch(`/api/hardware/control/${machineId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                command: command,
+                parameters: parameters
+            })
+        });
+
+        const result = await response.json();
+        console.log('控制命令响应:', result);
+
+        if (result.success) {
+            controlStatusDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    命令 "${getCommandDisplayName(command)}" 已成功发送到设备
+                    <br><small class="text-muted">命令ID: ${result.command_id}</small>
+                </div>
+            `;
+
+            // 添加到控制历史
+            addControlHistory(command, 'success', result.command_id);
+
+            // 刷新设备状态
+            setTimeout(() => {
+                loadDeviceStatus();
+            }, 2000);
+
+        } else {
+            controlStatusDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    发送命令失败: ${result.error}
+                </div>
+            `;
+
+            addControlHistory(command, 'failed', null, result.error);
+        }
+
+    } catch (error) {
+        console.error('发送控制命令失败:', error);
+        controlStatusDiv.innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                网络错误: ${error.message}
+            </div>
+        `;
+
+        addControlHistory(command, 'error', null, error.message);
+    }
+}
+
+// 获取命令显示名称
+function getCommandDisplayName(command) {
+    const names = {
+        'power_on': '开机',
+        'power_off': '关机',
+        'restart': '重启',
+        'calibrate': '校准',
+        'update_config': '更新配置'
+    };
+    return names[command] || command;
+}
+
+// 添加控制历史记录
+function addControlHistory(command, status, commandId = null, error = null) {
+    const historyDiv = document.getElementById('controlHistory');
+    const timestamp = new Date().toLocaleString();
+
+    let statusBadge = '';
+    let statusText = '';
+
+    switch(status) {
+        case 'success':
+            statusBadge = 'bg-success';
+            statusText = '成功';
+            break;
+        case 'failed':
+            statusBadge = 'bg-danger';
+            statusText = '失败';
+            break;
+        case 'error':
+            statusBadge = 'bg-warning';
+            statusText = '错误';
+            break;
+    }
+
+    const historyItem = `
+        <div class="control-history-item mb-2 p-2 border rounded">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <strong>${getCommandDisplayName(command)}</strong>
+                    <br><small class="text-muted">${timestamp}</small>
+                    ${commandId ? `<br><small>命令ID: ${commandId}</small>` : ''}
+                </div>
+                <span class="badge ${statusBadge}">${statusText}</span>
+            </div>
+            ${error ? `<div class="text-danger small mt-1">错误: ${error}</div>` : ''}
+        </div>
+    `;
+
+    // 如果是"暂无控制记录"，先清空
+    if (historyDiv.innerHTML.includes('暂无控制记录')) {
+        historyDiv.innerHTML = '';
+    }
+
+    // 添加到历史记录顶部
+    historyDiv.insertAdjacentHTML('afterbegin', historyItem);
+}
+
+// 加载设备状态
+async function loadDeviceStatus() {
+    console.log('加载设备状态...');
+
+    const statusDiv = document.getElementById('deviceStatus');
+    const machineId = '{{ machine.id }}';
+
+    try {
+        const response = await fetch(`/api/hardware/status/${machineId}`);
+        const result = await response.json();
+
+        if (result.success) {
+            const status = result.status;
+            const runtimeInfo = result.runtime_info;
+
+            let statusBadge = '';
+            let statusText = '';
+
+            if (status.online) {
+                if (status.status === 'active') {
+                    statusBadge = 'bg-success';
+                    statusText = '在线 - 工作中';
+                } else if (status.status === 'idle') {
+                    statusBadge = 'bg-info';
+                    statusText = '在线 - 空闲';
+                } else {
+                    statusBadge = 'bg-secondary';
+                    statusText = '在线 - ' + status.status;
+                }
+            } else {
+                statusBadge = 'bg-danger';
+                statusText = '离线';
+            }
+
+            statusDiv.innerHTML = `
+                <div class="text-center">
+                    <h6>设备状态</h6>
+                    <span class="badge ${statusBadge} fs-6 mb-3">${statusText}</span>
+
+                    <div class="row text-start">
+                        <div class="col-md-6">
+                            <strong>运行时间:</strong><br>
+                            总计: ${runtimeInfo.total_runtime_hours} 小时<br>
+                            本次: ${runtimeInfo.current_session_hours} 小时
+                        </div>
+                        <div class="col-md-6">
+                            <strong>设备健康度:</strong><br>
+                            <div class="progress mb-2">
+                                <div class="progress-bar ${runtimeInfo.health_percentage > 80 ? 'bg-success' : runtimeInfo.health_percentage > 60 ? 'bg-warning' : 'bg-danger'}"
+                                     role="progressbar"
+                                     style="width: ${runtimeInfo.health_percentage}%">
+                                    ${runtimeInfo.health_percentage}%
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                预计寿命: ${runtimeInfo.estimated_lifespan_remaining_months} 个月
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <small class="text-muted">
+                            最后更新: ${status.last_update ? new Date(status.last_update).toLocaleString() : '未知'}
+                        </small>
+                    </div>
+                </div>
+            `;
+
+            // 更新运行统计
+            updateRuntimeStats(runtimeInfo);
+
+            // 更新维护提醒
+            updateMaintenanceAlerts(runtimeInfo);
+
+        } else {
+            statusDiv.innerHTML = `
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    无法获取设备状态: ${result.error}
+                </div>
+            `;
+        }
+
+    } catch (error) {
+        console.error('加载设备状态失败:', error);
+        statusDiv.innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                网络错误: ${error.message}
+            </div>
+        `;
+    }
+}
+
+// 更新运行统计
+function updateRuntimeStats(runtimeInfo) {
+    const statsDiv = document.getElementById('runtimeStats');
+
+    statsDiv.innerHTML = `
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="border rounded p-2">
+                    <div class="h5 text-primary">${runtimeInfo.total_runtime_hours.toFixed(1)}</div>
+                    <small class="text-muted">总运行时间(小时)</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-2">
+                    <div class="h5 text-info">${runtimeInfo.current_session_hours.toFixed(1)}</div>
+                    <small class="text-muted">本次会话(小时)</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-2">
+                    <div class="h5 text-success">${runtimeInfo.health_percentage}%</div>
+                    <small class="text-muted">设备健康度</small>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// 更新维护提醒
+function updateMaintenanceAlerts(runtimeInfo) {
+    const alertsDiv = document.getElementById('maintenanceAlerts');
+
+    if (runtimeInfo.maintenance_due_hours <= 100) {
+        alertsDiv.className = 'alert alert-danger';
+        alertsDiv.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>维护提醒:</strong> 设备距离下次维护还有 ${runtimeInfo.maintenance_due_hours} 小时，请及时安排维护。
+        `;
+    } else if (runtimeInfo.maintenance_due_hours <= 200) {
+        alertsDiv.className = 'alert alert-warning';
+        alertsDiv.innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            <strong>维护提醒:</strong> 设备距离下次维护还有 ${runtimeInfo.maintenance_due_hours} 小时。
+        `;
+    } else {
+        alertsDiv.className = 'alert alert-success';
+        alertsDiv.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            设备运行正常，无维护提醒。
+        `;
+    }
+}
+
+// 初始化设备控制功能
+function initDeviceControl() {
+    console.log('初始化设备控制功能...');
+
+    // 绑定设备控制按钮事件
+    bindDeviceControlEvents();
+
+    // 加载设备状态
+    loadDeviceStatus();
+
+    // 设置定期刷新设备状态（每30秒）
+    setInterval(loadDeviceStatus, 30000);
 }
     </script>
 

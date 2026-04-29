@@ -6,12 +6,13 @@ from pathlib import Path
 from datetime import datetime
 import sys
 
-# 添加src到路径
+# 添加src和hardware到路径
 sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'hardware'))
 
 from machine_core.machine import DisinfectionMachine, DisinfectionRecord
 from machine_core.config import MachineConfig
-from machine_core.detector import StainDetector
+from hardware.machine_core.detector import StainDetector
 from machine_core.predictor import DisinfectionPredictor
 
 

@@ -17,7 +17,8 @@ def register_routes(app: Flask, base_dir: Path):
     from api.routes.camera_routes import register_camera_routes
     from api.routes.runtime_routes import register_runtime_routes
     from api.routes.placeholder_routes import register_placeholder_routes
-    
+    from api.routes.hardware_routes import register_hardware_routes
+
     register_auth_routes(app, base_dir)
     register_machine_routes(app, base_dir)
     register_detection_routes(app, base_dir)
@@ -26,5 +27,6 @@ def register_routes(app: Flask, base_dir: Path):
     register_camera_routes(app, base_dir)
     register_runtime_routes(app, base_dir)
     register_placeholder_routes(app, base_dir)  # 占位路由（开发中的功能）
-    
+    register_hardware_routes(app, base_dir)
+
     print("✅ 所有 API 路由注册完成")

@@ -6,27 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5d46dfc1-b298-46e4-9847-e9721c5ec11b" name="更改" comment="Initial commit: Split project into frontend, backend, and hardware components">
       <changelist_data name="给416狠狠注入白色糖浆" email="a416@gei416henhenzhurubaisetangjiangdemacbook-air.local" automatic="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/routes/hardware_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/machine_core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hardware/machine_core/hardware_communicator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/detect_fabric_stain/new.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/detect_fabric_stain/raspberry_pi_camera.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/routes/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/logs/aimachine.log" beforeDir="false" afterPath="$PROJECT_DIR$/backend/logs/aimachine.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/machine_core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/app_context.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/machine_core/app_context.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/detector.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/tests/test_machine_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tests/test_machine_core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/machine_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/machine_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +16,7 @@
     <persistenceIdMap>
       <entry key="_/Users/a416/Documents/project/AImachine" value="3CTSIVZ7h5X2GXHZPXQwUCXU4aP" />
       <entry key="_E:/AImachine" value="38WJNON9KRsGGgwaN1HvSO5aTzr" />
+      <entry key="_E:/rpi4-ai-disinfect" value="3DCuny7DD4NiOGKyQDA5pK3PJfb" />
     </persistenceIdMap>
   </component>
   <component name="CopilotUserSelectedModel">
@@ -74,12 +54,12 @@
     &quot;assignee&quot;: &quot;HK416txdy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/HK416txdy/rpi4-ai-disinfect.git&quot;,
-    &quot;accountId&quot;: &quot;23f3b3d3-35f1-4506-9d6f-6db51c984041&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/HK416txdy/rpi4-ai-disinfect",
+    "accountId": "dbbb1381-5c58-473a-bdcb-a05bdbe9a971"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -113,7 +93,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "settings.editor.splitter.proportion": "0.3058104",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
@@ -171,6 +151,7 @@
       <workItem from="1777125896850" duration="3697000" />
       <workItem from="1777440469627" duration="4182000" />
       <workItem from="1777444661775" duration="1513000" />
+      <workItem from="1777798539955" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial project configuration files for various modules">
       <option name="closed" value="true" />
@@ -210,6 +191,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
     <MESSAGE value="Add initial project configuration files for various modules" />
     <MESSAGE value="Initial commit: Split project into frontend, backend, and hardware components" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit: Split project into frontend, backend, and hardware components" />

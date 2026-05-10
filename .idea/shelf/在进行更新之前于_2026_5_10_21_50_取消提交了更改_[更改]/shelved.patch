@@ -1,0 +1,162 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5d46dfc1-b298-46e4-9847-e9721c5ec11b\" name=\"更改\" comment=\"Initial commit: Split project into frontend, backend, and hardware components\">\n      <changelist_data name=\"给416狠狠注入白色糖浆\" email=\"a416@gei416henhenzhurubaisetangjiangdemacbook-air.local\" automatic=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/backend/api/routes/hardware_routes.py\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/hardware/__init__.py\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/hardware/machine_core/__init__.py\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/hardware/machine_core/hardware_communicator.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/README.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/api/detect_fabric_stain/new.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/api/detect_fabric_stain/raspberry_pi_camera.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/api/routes/__init__.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/api/routes/__init__.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/logs/aimachine.log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/logs/aimachine.log\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/pyproject.toml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/pyproject.toml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/requirements.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/requirements.txt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/machine_core/__init__.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/machine_core/__init__.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/machine_core/app_context.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/machine_core/app_context.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/machine_core/detector.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/tests/test_machine_core.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/tests/test_machine_core.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/frontend/templates/machine_detail.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/templates/machine_detail.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/hardware/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/hardware/README.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/hardware/requirements.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/hardware/requirements.txt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/pyproject.toml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pyproject.toml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/uv.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/uv.lock\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CopilotPersistence\">\n    <persistenceIdMap>\n      <entry key=\"_/Users/a416/Documents/project/AImachine\" value=\"3CTSIVZ7h5X2GXHZPXQwUCXU4aP\" />\n      <entry key=\"_E:/AImachine\" value=\"38WJNON9KRsGGgwaN1HvSO5aTzr\" />\n    </persistenceIdMap>\n  </component>\n  <component name=\"CopilotUserSelectedModel\">\n    <selectedModels>\n      <entry key=\"chat-panel\" value=\"Auto\" />\n      <entry key=\"agent-panel\" value=\"Auto\" />\n    </selectedModels>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n        <option value=\"HTML File\" />\n        <option value=\"CSS File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"FlaskConsoleOptions\" custom-start-script=\"import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass\">\n    <envs>\n      <env key=\"FLASK_APP\" value=\"app\" />\n    </envs>\n    <option name=\"myCustomStartScript\" value=\"import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass\" />\n    <option name=\"myEnvs\">\n      <map>\n        <entry key=\"FLASK_APP\" value=\"app\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;HK416txdy&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/HK416txdy/rpi4-ai-disinfect.git&quot;,\n    &quot;accountId&quot;: &quot;23f3b3d3-35f1-4506-9d6f-6db51c984041&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"38WJNON9KRsGGgwaN1HvSO5aTzr\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"Python.app.executor\": \"Run\",\n    \"Python.test.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"codeWithMe.voiceChat.enabledByDefault\": \"false\",\n    \"com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"junie.onboarding.icon.badge.shown\": \"true\",\n    \"last_opened_file_path\": \"/Users/a416/Documents/project/AImachine\",\n    \"list.type.of.created.stylesheet\": \"CSS\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\",\n    \"settings.editor.splitter.proportion\": \"0.3058104\",\n    \"to.speed.mode.migration.done\": \"true\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\z1831\\Desktop\\AImachine\\static\\css\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PY-261.23567.174\" />\n        <option value=\"bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\n      <changelist id=\"5d46dfc1-b298-46e4-9847-e9721c5ec11b\" name=\"更改\" comment=\"\" />\n      <created>1768909352591</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1768909352591</updated>\n      <workItem from=\"1768909353638\" duration=\"23000\" />\n      <workItem from=\"1768909401017\" duration=\"1065000\" />\n      <workItem from=\"1768912622808\" duration=\"535000\" />\n      <workItem from=\"1769405463423\" duration=\"259000\" />\n      <workItem from=\"1769405750140\" duration=\"772000\" />\n      <workItem from=\"1769406532883\" duration=\"302000\" />\n      <workItem from=\"1769406853742\" duration=\"702000\" />\n      <workItem from=\"1769919622859\" duration=\"1539000\" />\n      <workItem from=\"1769921171759\" duration=\"614000\" />\n      <workItem from=\"1769967120674\" duration=\"599000\" />\n      <workItem from=\"1770103046925\" duration=\"6000\" />\n      <workItem from=\"1770120091315\" duration=\"1411000\" />\n      <workItem from=\"1770122612432\" duration=\"912000\" />\n      <workItem from=\"1770123929006\" duration=\"236000\" />\n      <workItem from=\"1770124204865\" duration=\"36000\" />\n      <workItem from=\"1770126907257\" duration=\"57000\" />\n      <workItem from=\"1770470705940\" duration=\"2158000\" />\n      <workItem from=\"1770472914589\" duration=\"1813000\" />\n      <workItem from=\"1770475337651\" duration=\"420000\" />\n      <workItem from=\"1770775115324\" duration=\"1754000\" />\n      <workItem from=\"1771670527456\" duration=\"2555000\" />\n      <workItem from=\"1775361621685\" duration=\"137000\" />\n      <workItem from=\"1775361778254\" duration=\"5987000\" />\n      <workItem from=\"1776304106654\" duration=\"133000\" />\n      <workItem from=\"1776304254940\" duration=\"2151000\" />\n      <workItem from=\"1776306435025\" duration=\"4317000\" />\n      <workItem from=\"1776407981111\" duration=\"88000\" />\n      <workItem from=\"1776408088756\" duration=\"1844000\" />\n      <workItem from=\"1777125896850\" duration=\"3697000\" />\n      <workItem from=\"1777440469627\" duration=\"4182000\" />\n      <workItem from=\"1777444661775\" duration=\"1513000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Add initial project configuration files for various modules\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1777440611258</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1777440611258</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"HEAD\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Add initial project configuration files for various modules\" />\n    <MESSAGE value=\"Initial commit: Split project into frontend, backend, and hardware components\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Initial commit: Split project into frontend, backend, and hardware components\" />\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/app_py$app.coverage\" NAME=\"app 覆盖结果\" MODIFIED=\"1771672923826\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\n    <SUITE FILE_PATH=\"coverage/AImachine$test.coverage\" NAME=\"test 覆盖结果\" MODIFIED=\"1769406452955\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"github-copilot-workspace\">\n    <instructionFileLocations>\n      <option value=\".github/instructions\" />\n    </instructionFileLocations>\n    <promptFileLocations>\n      <option value=\".github/prompts\" />\n    </promptFileLocations>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 13b8dfe767bb03fd7ba6547fe334bf3a2c48606c)
++++ b/.idea/workspace.xml	(date 1778421025007)
+@@ -4,29 +4,15 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5d46dfc1-b298-46e4-9847-e9721c5ec11b" name="更改" comment="Initial commit: Split project into frontend, backend, and hardware components">
+-      <changelist_data name="给416狠狠注入白色糖浆" email="a416@gei416henhenzhurubaisetangjiangdemacbook-air.local" automatic="false" />
+-      <change afterPath="$PROJECT_DIR$/backend/api/routes/hardware_routes.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/hardware/__init__.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/hardware/machine_core/__init__.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/hardware/machine_core/hardware_communicator.py" afterDir="false" />
++    <list default="true" id="5d46dfc1-b298-46e4-9847-e9721c5ec11b" name="更改" comment="Add initial output and stderr files along with project configuration">
++      <change afterPath="$PROJECT_DIR$/../php-lesson/calculator.php" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../php-lesson/hlc/task.php" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../php-lesson/lesson5.php" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../php-lesson/lesson6.php" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../php-lesson/task2.php" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../php-lesson/task3.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../.idea/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/project.iml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/api/detect_fabric_stain/new.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/api/detect_fabric_stain/raspberry_pi_camera.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/api/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/routes/__init__.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/logs/aimachine.log" beforeDir="false" afterPath="$PROJECT_DIR$/backend/logs/aimachine.log" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pyproject.toml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/machine_core/__init__.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/app_context.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/machine_core/app_context.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/machine_core/detector.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/tests/test_machine_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tests/test_machine_core.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/templates/machine_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/machine_detail.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/hardware/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/hardware/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/requirements.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -66,6 +52,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="PREVIOUS_COMMIT_AUTHORS">
++      <list>
++        <option value="给416狠狠注入白色糖浆 &lt;a416@gei416henhenzhurubaisetangjiangdemacbook-air.local&gt;" />
++      </list>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -91,34 +82,34 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "Python.app.executor": "Run",
+-    "Python.test.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "codeWithMe.voiceChat.enabledByDefault": "false",
+-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+-    "git-widget-placeholder": "main",
+-    "junie.onboarding.icon.badge.shown": "true",
+-    "last_opened_file_path": "/Users/a416/Documents/project/AImachine",
+-    "list.type.of.created.stylesheet": "CSS",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+-    "settings.editor.splitter.proportion": "0.3058104",
+-    "to.speed.mode.migration.done": "true",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;Python.app.executor&quot;: &quot;Run&quot;,
++    &quot;Python.test.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
++    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/a416/Documents/project/AImachine&quot;,
++    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
++    &quot;settings.editor.splitter.proportion&quot;: &quot;0.3058104&quot;,
++    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\z1831\Desktop\AImachine\static\css" />
+@@ -170,7 +161,11 @@
+       <workItem from="1776408088756" duration="1844000" />
+       <workItem from="1777125896850" duration="3697000" />
+       <workItem from="1777440469627" duration="4182000" />
+-      <workItem from="1777444661775" duration="1513000" />
++      <workItem from="1777444661775" duration="2240000" />
++      <workItem from="1777555765204" duration="761000" />
++      <workItem from="1778122982112" duration="93000" />
++      <workItem from="1778417994852" duration="126000" />
++      <workItem from="1778418136884" duration="2274000" />
+     </task>
+     <task id="LOCAL-00001" summary="Add initial project configuration files for various modules">
+       <option name="closed" value="true" />
+@@ -180,7 +175,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1777440611258</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Add initial output and stderr files along with project configuration">
++      <option name="closed" value="true" />
++      <created>1777446799642</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1777446799642</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -212,7 +215,8 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Add initial project configuration files for various modules" />
+     <MESSAGE value="Initial commit: Split project into frontend, backend, and hardware components" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit: Split project into frontend, backend, and hardware components" />
++    <MESSAGE value="Add initial output and stderr files along with project configuration" />
++    <option name="LAST_COMMIT_MESSAGE" value="Add initial output and stderr files along with project configuration" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/app_py$app.coverage" NAME="app 覆盖结果" MODIFIED="1771672923826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

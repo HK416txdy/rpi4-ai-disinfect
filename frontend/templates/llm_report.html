@@ -96,6 +96,20 @@
         .status-dot.not-configured {
             background: #dc3545;
         }
+
+        .analysis-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .analysis-result {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -193,6 +207,55 @@
                     <div id="reportContainer" class="report-container" style="display: none;">
                         <div class="report-content" id="reportContent">
                             <!-- 报告内容将显示在这里 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片上传和分析区域 -->
+            <div class="card mt-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0" id="analysisTitle">图片分析</h5>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2" id="analysisType">
+                            <option value="stain_detection">污渍检测</option>
+                            <option value="pollution_analysis">污染分析</option>
+                            <option value="disinfection_recommendation">消毒建议</option>
+                        </select>
+                        <input type="file" class="form-control form-control-sm d-inline-block w-auto" id="imageUpload" accept="image/*" style="display: none;">
+                        <button class="btn btn-outline-primary btn-sm" onclick="document.getElementById('imageUpload').click()">
+                            <i class="fas fa-upload"></i> 选择图片
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="imageAnalysisState" class="text-center py-5">
+                        <i class="fas fa-image fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted">选择图片进行AI分析</h4>
+                        <p class="text-muted">上传设备图片，AI将进行智能分析并生成报告</p>
+                    </div>
+
+                    <div id="imageAnalysisContainer" class="analysis-container" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>上传的图片</h6>
+                                <img id="uploadedImage" class="img-fluid rounded" style="max-height: 300px;">
+                            </div>
+                            <div class="col-md-6">
+                                <h6>AI分析结果</h6>
+                                <div id="imageAnalysisResult" class="analysis-result">
+                                    <!-- 分析结果将显示在这里 -->
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>详细分析报告</h6>
+                                <div class="report-content" id="detailedAnalysisReport">
+                                    <!-- 详细报告将显示在这里 -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -422,6 +485,114 @@
         } catch (error) {
             alert('保存失败: ' + error.message);
         }
+    }
+
+    // 图片上传处理
+    document.getElementById('imageUpload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            analyzeImage(file);
+        }
+    });
+
+    // 分析图片
+    async function analyzeImage(file) {
+        const analysisType = document.getElementById('analysisType').value;
+
+        // 显示加载状态
+        document.getElementById('imageAnalysisState').innerHTML = `
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4 class="text-muted mt-3">AI正在分析图片...</h4>
+            <p class="text-muted">请稍候，这可能需要几秒钟</p>
+        `;
+
+        try {
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('machine_id', selectedMachineId || '');
+            formData.append('analysis_type', analysisType);
+
+            const response = await fetch('/api/analyze_image_with_llm', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                displayImageAnalysis(result);
+            } else {
+                alert('分析失败: ' + result.error);
+                resetImageAnalysis();
+            }
+        } catch (error) {
+            alert('分析失败: ' + error.message);
+            resetImageAnalysis();
+        }
+    }
+
+    // 显示图片分析结果
+    function displayImageAnalysis(result) {
+        // 显示图片
+        const imageUrl = `/static/uploads/llm_analysis/${result.filename}`;
+        document.getElementById('uploadedImage').src = imageUrl;
+
+        // 显示分析结果
+        const analysisResult = document.getElementById('imageAnalysisResult');
+        const analysis = result.image_analysis;
+
+        analysisResult.innerHTML = `
+            <h6>图像分析结果</h6>
+            <div class="row">
+                <div class="col-6">
+                    <strong>灰度分析:</strong><br>
+                    平均灰度: ${analysis.grayscale.mean_grayscale?.toFixed(2) || 'N/A'}<br>
+                    标准差: ${analysis.grayscale.std_grayscale?.toFixed(2) || 'N/A'}
+                </div>
+                <div class="col-6">
+                    <strong>污渍检测:</strong><br>
+                    污渍数量: ${analysis.stains.stain_count || 0}<br>
+                    总面积: ${analysis.stains.total_area?.toFixed(2) || 0} 像素
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <strong>污染等级:</strong><br>
+                    ${analysis.pollution.pollution_level || '未知'} (${analysis.pollution.severity_level || '未知'})
+                </div>
+                <div class="col-6">
+                    <strong>消毒建议:</strong><br>
+                    模式: ${analysis.disinfection.disinfection_mode || 'N/A'}<br>
+                    时间: ${analysis.disinfection.disinfection_time || 'N/A'} 分钟
+                </div>
+            </div>
+        `;
+
+        // 显示LLM分析报告
+        const detailedReport = document.getElementById('detailedAnalysisReport');
+        if (result.llm_analysis && result.llm_analysis.success) {
+            detailedReport.innerHTML = marked.parse(result.llm_analysis.analysis);
+        } else {
+            detailedReport.innerHTML = '<p class="text-muted">LLM分析失败或未配置</p>';
+        }
+
+        // 切换显示
+        document.getElementById('imageAnalysisState').style.display = 'none';
+        document.getElementById('imageAnalysisContainer').style.display = 'block';
+    }
+
+    // 重置图片分析区域
+    function resetImageAnalysis() {
+        document.getElementById('imageAnalysisState').innerHTML = `
+            <i class="fas fa-image fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">选择图片进行AI分析</h4>
+            <p class="text-muted">上传设备图片，AI将进行智能分析并生成报告</p>
+        `;
+        document.getElementById('imageAnalysisState').style.display = 'block';
+        document.getElementById('imageAnalysisContainer').style.display = 'none';
     }
 </script>
 </body>

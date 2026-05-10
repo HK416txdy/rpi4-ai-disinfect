@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d46dfc1-b298-46e4-9847-e9721c5ec11b" name="更改" comment="Initial commit: Split project into frontend, backend, and hardware components">
-      <changelist_data name="给416狠狠注入白色糖浆" email="a416@gei416henhenzhurubaisetangjiangdemacbook-air.local" automatic="false" />
+    <list default="true" id="5d46dfc1-b298-46e4-9847-e9721c5ec11b" name="更改" comment="Add initial output and stderr files along with project configuration">
+      <change beforePath="$PROJECT_DIR$/.idea/aimachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aimachine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aimachine@1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aimachine@1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aimachine@2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aimachine@2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/routes/hardware_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/routes/hardware_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/routes/report_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/routes/report_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/logs/aimachine.log" beforeDir="false" afterPath="$PROJECT_DIR$/backend/logs/aimachine.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/llm_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/llm_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/machine_core/detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/machine_core/detector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/machine_core/hardware_communicator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/machine_core/new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardware/machine_core/raspberry_pi_camera.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +30,9 @@
       <entry key="_E:/AImachine" value="38WJNON9KRsGGgwaN1HvSO5aTzr" />
       <entry key="_E:/rpi4-ai-disinfect" value="3DCuny7DD4NiOGKyQDA5pK3PJfb" />
     </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedChatMode">
+    <option name="chatModeId" value="Agent" />
   </component>
   <component name="CopilotUserSelectedModel">
     <selectedModels>
@@ -46,6 +61,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -54,12 +74,12 @@
     &quot;assignee&quot;: &quot;HK416txdy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/HK416txdy/rpi4-ai-disinfect",
-    "accountId": "dbbb1381-5c58-473a-bdcb-a05bdbe9a971"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HK416txdy/rpi4-ai-disinfect.git&quot;,
+    &quot;accountId&quot;: &quot;23f3b3d3-35f1-4506-9d6f-6db51c984041&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -71,34 +91,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.app.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/a416/Documents/project/AImachine",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "settings.editor.splitter.proportion": "0.3058104",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/a416/Documents/project/AImachine&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.3058104&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\z1831\Desktop\AImachine\static\css" />
@@ -152,6 +171,8 @@
       <workItem from="1777440469627" duration="4182000" />
       <workItem from="1777444661775" duration="1513000" />
       <workItem from="1777798539955" duration="9000" />
+      <workItem from="1778423240168" duration="421000" />
+      <workItem from="1778423664849" duration="2522000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial project configuration files for various modules">
       <option name="closed" value="true" />
@@ -161,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777440611258</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add initial output and stderr files along with project configuration">
+      <option name="closed" value="true" />
+      <created>1778421337408</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421337408</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +207,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -196,7 +225,9 @@
     </ignored-roots>
     <MESSAGE value="Add initial project configuration files for various modules" />
     <MESSAGE value="Initial commit: Split project into frontend, backend, and hardware components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit: Split project into frontend, backend, and hardware components" />
+    <MESSAGE value="fix(backend): 修复Flask模板和静态文件路径引用及表单提交路径&#10;&#10;- 明确指定前端模板(frontend/templates)和静态文件(frontend/static)目录&#10;- 当frontend/templates目录不存在时，回退至配置中默认目录并打印警告&#10;- 打印模板目录及关键页面存在性的调试信息，方便排查模板加载问题&#10;- Flask应用初始化时使用新的模板及静态文件路径&#10;- 修改login.html模板中登录表单提交地址为&quot;/login&quot;&#10;- 优化日志，增加模板目录和静态目录的启动日志输出&#10;- 轻微调整多处代码排版，提升代码可读性" />
+    <MESSAGE value="Add initial output and stderr files along with project configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add initial output and stderr files along with project configuration" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/app_py$app.coverage" NAME="app 覆盖结果" MODIFIED="1771672923826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

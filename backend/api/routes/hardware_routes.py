@@ -8,6 +8,7 @@ from datetime import datetime
 import json
 from typing import Dict, Any
 import threading
+import cv2
 
 
 def register_hardware_routes(app: Flask, base_dir: Path):
@@ -185,6 +186,95 @@ def register_hardware_routes(app: Flask, base_dir: Path):
             print(f"获取硬件状态失败: {e}")
             return jsonify({'success': False, 'error': str(e)}), 500
 
+    @app.route('/api/hardware/upload', methods=['POST'])
+    def upload_hardware_image():
+        """接收硬件上传的图片并分析"""
+        try:
+            # 获取上传的文件
+            image_file = request.files.get('image')
+            machine_id = request.form.get('machine_id')
+            timestamp = request.form.get('timestamp')
+            detection_info = request.form.get('detection_info')
+
+            if not image_file or not machine_id:
+                return jsonify({'success': False, 'error': '缺少必要参数'}), 400
+
+            # 解析检测信息
+            detection_data = {}
+            if detection_info:
+                try:
+                    detection_data = json.loads(detection_info)
+                except:
+                    detection_data = {}
+
+            # 保存图片
+            upload_dir = base_dir / 'frontend' / 'static' / 'uploads' / 'hardware'
+            upload_dir.mkdir(parents=True, exist_ok=True)
+
+            filename = f"hardware_{machine_id}_{timestamp or 'upload'}.jpg"
+            filepath = upload_dir / filename
+            image_file.save(filepath)
+
+            # 读取图片进行分析
+            image = cv2.imread(str(filepath))
+            if image is None:
+                return jsonify({'success': False, 'error': '图片读取失败'}), 400
+
+            # 获取应用上下文
+            app_context = app.config.get('APP_CONTEXT')
+            if not app_context:
+                return jsonify({'success': False, 'error': '应用上下文未初始化'}), 500
+
+            # 进行污渍检测
+            grayscale_result = app_context.detector.analyze_grayscale(image)
+            stain_result = app_context.detector.detect_stains(image)
+
+            # 分析污染等级
+            gray_value = grayscale_result.get('mean_grayscale', 128) if grayscale_result.get('success') else 128
+            colony_density = 1000  # 默认值，可以从检测结果扩展
+            pollution_info = app_context.detector.get_pollution_level(gray_value, colony_density)
+
+            # 使用AI预测器计算消毒参数
+            disinfection_params = {}
+            if app_context.predictor and grayscale_result.get('success'):
+                disinfection_params = app_context.predictor.predict_disinfection_params(
+                    scene_type=1,  # 默认场景
+                    disinfection_object=1,  # 默认对象
+                    bacteria_type='普通细菌(大肠杆菌等)',
+                    pollution_grayscale=int(gray_value),
+                    colony_density=colony_density,
+                    pollution_type=pollution_info['pollution_level'],
+                    pollution_level=pollution_info['pollution_level'],
+                    severity_level=pollution_info['severity_level'],
+                    compliance_standard=1
+                )
+
+            # 计算GPIO持续时间（基于污染等级）
+            gpio_duration = _calculate_gpio_duration(pollution_info, disinfection_params)
+
+            # 准备响应数据
+            result = {
+                'success': True,
+                'machine_id': int(machine_id),
+                'timestamp': timestamp,
+                'filename': filename,
+                'gpio_duration': gpio_duration,
+                'analysis': {
+                    'grayscale_analysis': grayscale_result,
+                    'stain_detection': stain_result,
+                    'pollution_assessment': pollution_info,
+                    'disinfection_params': disinfection_params
+                },
+                'message': f'图片已接收并分析，GPIO持续时间: {gpio_duration}秒'
+            }
+
+            print(f"[HARDWARE] 收到设备 {machine_id} 的图片，分析完成，GPIO时长: {gpio_duration}s")
+            return jsonify(result)
+
+        except Exception as e:
+            print(f"硬件图片上传处理失败: {e}")
+            return jsonify({'success': False, 'error': str(e)}), 500
+
 
 def _process_detection_data(machine_id: int, detection_data: Dict[str, Any], timestamp: str) -> Dict[str, Any]:
     """处理检测数据"""
@@ -263,3 +353,22 @@ def _calculate_runtime_info(machine_id: int) -> Dict[str, Any]:
         'health_percentage': 85.3,  # 设备健康度 百分比
         'estimated_lifespan_remaining_months': 18
     }
+
+
+def _calculate_gpio_duration(pollution_info: Dict[str, Any], disinfection_params: Dict[str, Any]) -> int:
+    """计算GPIO持续时间（秒）"""
+    try:
+        # 基于污染等级和消毒参数计算持续时间
+        level = pollution_info.get('pollution_level', 1)
+        severity = pollution_info.get('severity_level', 1)
+        duration = disinfection_params.get('disinfection_time', 0)
+
+        # 简单的计算示例：根据污染等级和严重程度调整时间
+        gpio_duration = max(10, min(300, duration + level * 10 + severity * 5))
+
+        return gpio_duration
+
+    except Exception as e:
+        print(f"计算GPIO持续时间失败: {e}")
+        return 60  # 默认60秒
+
